@@ -3,11 +3,15 @@ import requests
 import json
 import traceback
 import random
+import urllib.request 
 app = Flask(__name__)
 
 token = "EAAa8E6VNt3EBADvH7cWPONPG8q10a2vkBDCDZAT8t3iml7TvGncZBZBljVZCZAH1tFGXI0DqXZB4CPAFE2NCm3qy1PCs3hB09OSfsRZCe0nv3Y9S9szKe0k9MTw6K6Owb6WQdA79gbJLk1nisUdCQHZCWnWxEb11TaETbr8T2ZB1DNgZDZD"
-tas = requests.get('https://graph.facebook.com/v2.6/me?access_token=' + token)
-xis = "Wes"
+
+url = 'https://graph.facebook.com/v2.6/me?access_token=' + token  
+resp = urllib.request.urlopen(url+str()).read()  
+resp = json.loads(resp.decode('utf-8'))  
+xis = resp['name']
       
 
 @app.route('/webhook', methods=['GET', 'POST'])
