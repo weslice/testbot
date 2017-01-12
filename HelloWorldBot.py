@@ -6,13 +6,13 @@ import random
 app = Flask(__name__)
 
 token = "EAAa8E6VNt3EBADvH7cWPONPG8q10a2vkBDCDZAT8t3iml7TvGncZBZBljVZCZAH1tFGXI0DqXZB4CPAFE2NCm3qy1PCs3hB09OSfsRZCe0nv3Y9S9szKe0k9MTw6K6Owb6WQdA79gbJLk1nisUdCQHZCWnWxEb11TaETbr8T2ZB1DNgZDZD"
-
+n = requests.get('https://graph.facebook.com/v2.6/me?access_token=' + token) 
+      
 @app.route('/webhook', methods=['GET', 'POST'])
 def webhook():
   if request.method == 'POST':
     try:
-	  n =  token 
-      data = json.loads(request.data)
+	  data = json.loads(request.data)
       text = data['entry'][0]['messaging'][0]['message']['text'] # Incoming Message Text
       sender = data['entry'][0]['messaging'][0]['sender']['id'] # Sender ID
       payload = {'recipient': {'id': sender}, 'message': {'text': "Hello World"}} # We're going to send this back
