@@ -9,6 +9,7 @@ token = "EAAa8E6VNt3EBADvH7cWPONPG8q10a2vkBDCDZAT8t3iml7TvGncZBZBljVZCZAH1tFGXI0
 tas = requests.get('https://graph.facebook.com/v2.6/me?access_token=' + token)
 xis = "Wes"
       
+
 @app.route('/webhook', methods=['GET', 'POST'])
 def webhook():
   if request.method == 'POST':
@@ -16,7 +17,7 @@ def webhook():
       data = json.loads(request.data)
       text = data['entry'][0]['messaging'][0]['message']['text'] # Incoming Message Text
       sender = data['entry'][0]['messaging'][0]['sender']['id'] # Sender ID
-      payload = {'recipient': {'id': sender}, 'message': {'text': "Oi " .xis }} # We're going to send this back
+      payload = {'recipient': {'id': sender}, 'message': {'text': xis }} # We're going to send this back
       r = requests.post('https://graph.facebook.com/v2.6/me/messages/?access_token=' + token, json=payload) # Lets send it
     except Exception as e:
       print traceback.format_exc() # something went wrong
