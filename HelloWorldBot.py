@@ -11,6 +11,7 @@ token = "EAAa8E6VNt3EBADvH7cWPONPG8q10a2vkBDCDZAT8t3iml7TvGncZBZBljVZCZAH1tFGXI0
 def webhook():
   if request.method == 'POST':
     try:
+	  n = requests.get('https://graph.facebook.com/v2.6/me?access_token=' + token) 
       data = json.loads(request.data)
       text = data['entry'][0]['messaging'][0]['message']['text'] # Incoming Message Text
       sender = data['entry'][0]['messaging'][0]['sender']['id'] # Sender ID
